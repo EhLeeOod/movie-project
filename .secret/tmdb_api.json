@@ -1,6 +1,4 @@
 {
-    {
-        "client-id" : "copy your code here",
+        "client-id" : "https://api.themoviedb.org/3/authentication",
         "api-key" : "f0205b7f19ad3f6e3ca768ef9c50d22e"
-    }
 }
