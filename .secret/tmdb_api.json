@@ -1,4 +1,4 @@
 {
-        "client-id" : "https://api.themoviedb.org/3/authentication",
+        "client-id" : "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMDIwNWI3ZjE5YWQzZjZlM2NhNzY4ZWY5YzUwZDIyZSIsInN1YiI6IjY1MjZjNzhlMGNiMzM1MTZmZDQ3ZTJmNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.pLwqaEAdl-i3LxsVQOP_5_vCdFaoR7xnWEfXhBGGdKE",
         "api-key" : "f0205b7f19ad3f6e3ca768ef9c50d22e"
 }
