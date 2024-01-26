@@ -204,7 +204,7 @@ if s_model == 'nlp':
     if st.button("Show Evaluation."):
         with st.spinner("Please wait while the nlp model is evaluated..."):
             
-            nlp_fpath = FPATHS['models']['nlp']
+            nlp_fpath = FPATHS['Models']['gru']
             best_network = load_network(nlp_fpath)
             
             if show_train == True:
