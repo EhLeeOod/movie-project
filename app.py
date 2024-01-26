@@ -40,7 +40,7 @@ def load_network(fpath):
     model = tf.keras.models.load_model(fpath)
     return model
 
-def load_lookup(fpath=FPATHS['data']['ml']['target_lookup']):
+def load_lookup(fpath=FPATHS['Data']['ml']['target_lookup']):
     return joblib.load(fpath)
 
 def predict_decode_deep(X_to_pred, network,lookup_dict,
@@ -148,12 +148,12 @@ def classification_metrics_streamlit_tensorflow(model,X_train=None, y_train=None
     return report, conf_mat
 
 #loading train/test data
-X_train, y_train = load_Xy_data(fpath=FPATHS['data']['ml']['train'])
-X_test, y_test = load_Xy_data(fpath=FPATHS['data']['ml']['test'])
+X_train, y_train = load_Xy_data(fpath=FPATHS['Data']['ml']['train'])
+X_test, y_test = load_Xy_data(fpath=FPATHS['Data']['ml']['test'])
 
-fpath_train_ds = FPATHS['data']['tf']['train_tf']
+fpath_train_ds = FPATHS['Data']['tf']['train_tf']
 train_ds = load_tf_dataset(fpath_train_ds)
-fpath_test_ds = FPATHS['data']['tf']['test_tf']
+fpath_test_ds = FPATHS['Data']['tf']['test_tf']
 test_ds = load_tf_dataset(fpath_test_ds)
 
 ## Title and Markdown subheader
@@ -173,18 +173,19 @@ Xs = pd.Series(X_to_pred)
 
 if st.button("Generate"):
     if s_model == 'nlp':
-        nlp_fpath = FPATHS['models']['nlp']
+        nlp_fpath = FPATHS['Models']['gru']
         best_network = load_network(nlp_fpath)
         target_lookup = load_lookup()
         pred_class_name = predict_decode_deep(X_to_pred, best_network,target_lookup)
         st.markdown(f"##### NLP Predicted Category:  {pred_class_name}")
         
     else:
-        ml_fpath = FPATHS['models']['ml']
+        ml_fpath = FPATHS['Models']['clf']
         ml_pipe = load_model_ml(ml_fpath)
         target_lookup = load_lookup()
         # new_pred = ml_pipe.predict(Xs)[0]
         pred_class = make_prediction(X_to_pred, ml_pipe, target_lookup)
+        
         st.markdown(f"##### ML Predicted Category:  {pred_class}")
     
 else:
