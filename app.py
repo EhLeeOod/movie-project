@@ -175,18 +175,18 @@ if st.button("Generate"):
     if s_model == 'nlp':
         nlp_fpath = FPATHS['Models']['gru']
         best_network = load_network(nlp_fpath)
-        target_lookup = load_lookup()
-        pred_class_name = predict_decode_deep(X_to_pred, best_network,target_lookup)
+        target_lookup = load_lookup()       
+        # pred_class_name = predict_decode_deep(X_to_pred, best_network,target_lookup)
         st.markdown(f"##### NLP Predicted Category:  {pred_class_name}")
         
     else:
         ml_fpath = FPATHS['Models']['clf']
         ml_pipe = load_model_ml(ml_fpath)
         target_lookup = load_lookup()
-        # new_pred = ml_pipe.predict(Xs)[0]
-        pred_class = make_prediction(X_to_pred, ml_pipe, target_lookup)
+        new_pred = ml_pipe.predict(Xs)[0]
+        # pred_class = make_prediction(X_to_pred, ml_pipe, target_lookup)
         
-        st.markdown(f"##### ML Predicted Category:  {pred_class}")
+        st.markdown(f"##### ML Predicted Category:  {new_pred}")
     
 else:
     st.empty()
@@ -204,7 +204,7 @@ if s_model == 'nlp':
     if st.button("Show Evaluation."):
         with st.spinner("Please wait while the nlp model is evaluated..."):
             
-            nlp_fpath = FPATHS['models']['nlp']
+            nlp_fpath = FPATHS['models']['gru']
             best_network = load_network(nlp_fpath)
             
             if show_train == True:
@@ -231,4 +231,20 @@ if s_model == 'nlp':
 else: 
     if st.button("Show Evaluation."):
         with st.spinner("Please wait while the ml model is evaluated..."):
-            st.empty()
+            if show_train == True:
+                # Display training data results
+                report_str, conf_mat = classification_metrics_streamlit_tensorflow(best_network,label='Training Data',
+                                                                                   X_train=train_ds,
+                                                                                   )
+                st.text(report_str)
+                st.pyplot(conf_mat)
+                st.text("\n\n")
+    
+            if show_test == True: 
+                # Display training data results
+                report_str, conf_mat = classification_metrics_streamlit_tensorflow(best_network,label='Test Data',
+                                                                                   X_train=test_ds
+                                                                               )
+                st.text(report_str)
+                st.pyplot(conf_mat)
+                st.text("\n\n")
