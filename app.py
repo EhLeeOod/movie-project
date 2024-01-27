@@ -163,7 +163,7 @@ st.title('IMDB Rating Prediction')
                        
 st.subheader("Select model and enter text using the sidebar.\n Then check the box below to generate predictions.")
         
-s_model = st.sidebar.selectbox('Model',['ml','nlp'])
+s_model = st.sidebar.selectbox('Model',['ml'])
 
 X_to_pred = st.sidebar.text_input('Insert Text', value = 'Great Film!')
 
@@ -193,7 +193,7 @@ else:
 
 st.divider()
 
-st.subheader('Evaluate Neural Network')
+st.subheader('Evaluate Model')
 
 ## To place the 3 checkboxes side-by-side
 col1,col2,col3 = st.columns(3)
@@ -201,7 +201,7 @@ show_train = col1.checkbox("Show training data.", value=True)
 show_test = col2.checkbox("Show test data.", value=True)
 
 if s_model == 'nlp':
-    if st.button("Show Evaluation."):
+    if st.button("Show Evaluation"):
         with st.spinner("Please wait while the nlp model is evaluated..."):
             
             nlp_fpath = FPATHS['models']['gru']
@@ -230,21 +230,23 @@ if s_model == 'nlp':
 
 else: 
     if st.button("Show Evaluation."):
-        with st.spinner("Please wait while the ml model is evaluated..."):
+        with st.spinner("Please wait while the Machine Learning model is evaluated..."):
+            ml_fpath = FPATHS['Models']['clf']
+            ml_pipe = load_model_ml(ml_fpath)
+
             if show_train == True:
                 # Display training data results
-                report_str, conf_mat = classification_metrics_streamlit_tensorflow(best_network,label='Training Data',
-                                                                                   X_train=train_ds,
-                                                                                   )
+                y_pred_train = ml_pipe.predict(X_train)
+                report_str, conf_mat = classification_metrics_streamlit(y_train, y_pred_train, label='Training Data')
                 st.text(report_str)
                 st.pyplot(conf_mat)
                 st.text("\n\n")
+                
     
             if show_test == True: 
-                # Display training data results
-                report_str, conf_mat = classification_metrics_streamlit_tensorflow(best_network,label='Test Data',
-                                                                                   X_train=test_ds
-                                                                               )
+                # Display the trainin data resultsg
+                y_pred_test = ml_pipe.predict(X_test)
+                report_str, conf_mat = classification_metrics_streamlit(y_test, y_pred_test, cmap='Reds',label='Test Data')
                 st.text(report_str)
                 st.pyplot(conf_mat)
                 st.text("\n\n")
