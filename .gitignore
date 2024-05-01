@@ -154,3 +154,5 @@ Data/title.basics.tsv.gz
 Data/title.ratings.tsv.gz
 Data/tmdb_api_results_2010.json
 Data/tmdb_api_results_2010.json
+
+.secret/
