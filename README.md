@@ -3,8 +3,8 @@
 ## NLP Analysis of Movie Reviews
 
 !['word clouds'](https://github.com/EhLeeOod/movie-project/blob/main/Data-NLP/Images/wordclouds.png?raw=true)
-!['freq dist high'](https://github.com/EhLeeOod/movie-project/blob/main/Data-NLP/Images/freqdist-high.png?raw=true)
-!['freq dist low'](https://github.com/EhLeeOod/movie-project/blob/main/Data-NLP/Images/freqdist-low.png?raw=true)
+# !['freq dist high'](https://github.com/EhLeeOod/movie-project/blob/main/Data-NLP/Images/freqdist-high.png?raw=true)
+# !['freq dist low'](https://github.com/EhLeeOod/movie-project/blob/main/Data-NLP/Images/freqdist-low.png?raw=true)
 !['ngrams tables'](https://github.com/EhLeeOod/movie-project/blob/main/Data-NLP/Images/ngrams.PNG?raw=true)
 
 ### Recommendations/conclusions for what to do/not to do make a highly-rated movie.
